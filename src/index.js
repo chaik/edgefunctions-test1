@@ -15,6 +15,9 @@ governing permissions and limitations under the License.
 import * as response from './lib/response.js';
 import { log } from './lib/log.js';
 import { weatherHandler } from "./weather.js";
+import { frescopaLocationsHandler } from "./frescopaLocations.js";
+import { secureHelloWorldHandler } from "./secureHelloWorld.js";
+import { coffeeTastingBookingHandler } from "./coffeeTastingBooking.js";
 
 addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
 
@@ -32,6 +35,12 @@ async function handleRequest(event) {
       finalResponse = new Response("Hello World from the edge!", { status: 200 });
     } else if (url.pathname === "/weather" && req.method === "GET") {
       finalResponse = await weatherHandler(req);
+    } else if (url.pathname === "/compute/frescopa-locations") {
+      finalResponse = await frescopaLocationsHandler(req);
+    } else if (url.pathname === "/compute/secure-hello-world") {
+      finalResponse = await secureHelloWorldHandler(req);
+    } else if (url.pathname === "/compute/coffee-tasting-booking") {
+      finalResponse = await coffeeTastingBookingHandler(req);
     } else {
       finalResponse = response.notFound();
     }
