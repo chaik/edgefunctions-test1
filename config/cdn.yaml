@@ -1,0 +1,17 @@
+kind: 'CDN'
+version: '1'
+data:
+  originSelectors:
+    rules:
+      - name: route-to-first-edge-function
+        when: { reqProperty: path, equals: "/weather" }
+        action:
+          type: selectAemOrigin
+          originName: edgefunction-first-edge-function
+          skipCache: true
+      - name: route-to-second-edge-function
+        when: { reqProperty: path, equals: "/hello-world" }
+        action:
+          type: selectAemOrigin
+          originName: edgefunction-second-edge-function
+          skipCache: true

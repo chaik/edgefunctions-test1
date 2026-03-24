@@ -1,0 +1,10 @@
+kind: "EdgeFunctions"
+version: "1"
+data:
+  services:
+    - name: first-edge-function
+    - name: second-edge-function
+  # Uncomment to enable secrets
+  # secrets:
+  #   - key: API_TOKEN
+  #     value: ${{ API_TOKEN_SECRET }}
